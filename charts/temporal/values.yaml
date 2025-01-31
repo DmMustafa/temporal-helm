@@ -444,7 +444,7 @@ schema:
   containerSecurityContext: {}
   securityContext: {}
 elasticsearch:
-  enabled: true
+  enabled: false
   replicas: 3
   persistence:
     enabled: false
