@@ -382,12 +382,12 @@ web:
   service:
     # set type to NodePort if access to web needs access from outside the cluster
     # for more info see https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
-    type: ClusterIP
+    type: NodePort
     port: 8080
     annotations: {}
     # loadBalancerIP:
   ingress:
-    enabled: false
+    enabled: true
     # className:
     annotations: {}
     # kubernetes.io/ingress.class: traefik
@@ -444,8 +444,8 @@ schema:
   containerSecurityContext: {}
   securityContext: {}
 elasticsearch:
-  enabled: false
-  replicas: 3
+  enabled: true
+  replicas: 1
   persistence:
     enabled: false
   imageTag: 7.17.3
@@ -458,11 +458,11 @@ elasticsearch:
   password: ""
   visibilityIndex: "temporal_visibility_v1_dev"
 prometheus:
-  enabled: false
+  enabled: true
   nodeExporter:
     enabled: false
 grafana:
-  enabled: false
+  enabled: true
   replicas: 1
   testFramework:
     enabled: false
