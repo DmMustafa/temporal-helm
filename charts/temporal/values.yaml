@@ -347,7 +347,7 @@ server:
     topologySpreadConstraints: []
     podDisruptionBudget: {}
 admintools:
-  enabled: false
+  enabled: true
   image:
     repository: temporalio/admin-tools
     tag: 1.26.2
