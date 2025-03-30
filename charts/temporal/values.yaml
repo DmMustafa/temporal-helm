@@ -137,65 +137,28 @@ server:
       defaultStore: default
       additionalStores: {}
       default:
-        driver: "cassandra"
-        cassandra:
-          hosts: []
-          # port: 9042
-          keyspace: "temporal"
-          user: "user"
-          password: "password"
-          existingSecret: ""
-          replicationFactor: 1
-          # datacenter: "us-east-1a"
-          # maxQPS: 1000
-          # maxConns: 2
-          consistency:
-            default:
-              consistency: "local_quorum"
-              serialConsistency: "local_serial"
+        driver: "sql"
         sql:
-          driver: "mysql8"
-          host: "mysql"
-          port: 3306
-          database: "temporal"
-          user: "temporal"
-          password: "temporal"
-          existingSecret: ""
-          secretName: ""
+          driver: "postgres12"
+          host: 192.168.1.2
+          port: 5430
+          database: temporal
+          user: postgres
+          password: postgres_password
           maxConns: 20
           maxConnLifetime: "1h"
-          # connectAttributes:
-          # tx_isolation: 'READ-COMMITTED'
       visibility:
-        driver: "cassandra"
-        cassandra:
-          hosts: []
-          # port: 9042
-          keyspace: "temporal_visibility"
-          user: "user"
-          password: "password"
-          existingSecret: ""
-          # datacenter: "us-east-1a"
-          # maxQPS: 1000
-          # maxConns: 2
-          replicationFactor: 1
-          consistency:
-            default:
-              consistency: "local_quorum"
-              serialConsistency: "local_serial"
+        driver: "sql"
         sql:
-          driver: "mysql8"
-          host: "mysql"
-          port: 3306
-          database: "temporal_visibility"
-          user: "temporal"
-          password: "temporal"
-          existingSecret: ""
-          secretName: ""
-          maxConns: 20
-          maxConnLifetime: "1h"
-          # connectAttributes:
-          #   tx_isolation: 'READ-COMMITTED'
+          driver: 'postgres12' # For PostgreSQL v12 and later. For earlier versions, use "postgres" plugin.
+          database: 'temporal_visibility'
+          host: '192.168.1.2' # remote address of this database; for example, 127.0.0.0:5432
+          port: 5430
+          user: postgres
+          password: postgres_password
+          maxConns: 2
+          maxIdleConns: 2
+          maxConnLifetime: '1h'
     namespaces:
       # Enable this to create namespaces
       create: false
